@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Running make check before commit..."
+make check || { echo "Blocked: make check failed."; exit 1; }
