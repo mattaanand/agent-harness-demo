@@ -23,7 +23,7 @@ make check
 | Claude Code permissions | `.claude/settings.json` | Allows `make check`, pytest, ruff, `git status` and `git diff`. Denies `git push`, `rm -rf` and reading `.env`. |
 | Codex permissions | `.codex/config.toml` | `approval_policy = "on-request"` and `sandbox_mode = "workspace-write"`. |
 
-The layers differ in strength. `AGENTS.md` is a request the agent can ignore. The deny rules, the hook and CI are enforced by the tooling.
+AGENTS.md is a request the agent can ignore. The deny rules are enforced by Claude Code. The hook can be bypassed with --no-verify, and CI flags failures but only blocks merges if branch protection requires it.
 
 ## What I tested
 
@@ -39,3 +39,5 @@ Two tasks, each run with the harness and without it.
 - One run per task, so these are anecdotes, not statistics.
 - Tested with Claude Code only so far.
 - The Codex config (`.codex/config.toml`) is untested.
+- Without the harness the agent mentioned its test edit in its summary, so it was not hidden, just unprompted.
+- The no-harness push went to a throwaway branch with the function already present, so it says nothing about code quality.
