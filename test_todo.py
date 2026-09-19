@@ -1,4 +1,4 @@
-from todo import add_task, complete_task, delete_task
+from todo import add_task, complete_task, delete_task, list_open_tasks
 
 
 def test_add_task():
@@ -18,3 +18,9 @@ def test_delete_task():
 def test_delete_task_missing_title():
     tasks = add_task([], "a")
     assert delete_task(tasks, "zzz") == [{"title": "a", "done": False}]
+
+
+def test_list_open_tasks():
+    tasks = add_task(add_task([], "a"), "b")
+    complete_task(tasks, "a")
+    assert list_open_tasks(tasks) == [{"title": "b", "done": False}]

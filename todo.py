@@ -13,3 +13,7 @@ def complete_task(tasks, title):
 def delete_task(tasks, title):
     tasks[:] = [t for t in tasks if t["title"] != title]
     return tasks
+
+
+def list_open_tasks(tasks):
+    return [t for t in tasks if not t["done"]]
