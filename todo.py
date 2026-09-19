@@ -8,3 +8,8 @@ def complete_task(tasks, title):
         if t["title"] == title:
             t["done"] = True
     return tasks
+
+
+def delete_task(tasks, title):
+    tasks[:] = [t for t in tasks if t["title"] != title]
+    return tasks
